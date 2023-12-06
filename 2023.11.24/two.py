@@ -22,7 +22,12 @@ class HTMLTag:
     
     def __str(self, indent_level: int) -> str:
         """Рекурсивно формирует строку с текущим и всеми вложенными тегами."""
-        attr_str = ''.join(f'{key} = {val}' for key, val in self.attrs.items())
+
+        if len(self.attrs.items()) > 1:
+            attr_str = ''.join(f'{key} = {val} ' for key, val in self.attrs.items())
+        else:
+            attr_str = ''.join(f'{key} = {val}' for key, val in self.attrs.items())
+
         margin = ' ' * indent_level * self.default_indent_spaces
         eol = ''
         if attr_str:
@@ -78,15 +83,15 @@ class HTMLBuilder:
             return self.__parent.build()
 
 
-root = HTMLBuilder('div')
-div = HTMLTag.create('div')\
-             .sibling('p', 'Menu')\
-             .nested('ul')\
-             .sibling('li', 'File', id = '123')\
-             .sibling('li', 'Edit')\
-             .sibling('li', 'View')\
-             .build()
-print(div)
+# root = HTMLBuilder('div')
+# div = HTMLTag.create('div')\
+#              .sibling('p', 'Menu')\
+#              .nested('ul')\
+#              .sibling('li', 'File', id = '123')\
+#              .sibling('li', 'Edit')\
+#              .sibling('li', 'View')\
+#              .build()
+# print(div)
 
 # <div>
 #   <p>Menu</p>
@@ -97,5 +102,5 @@ print(div)
 #   </ul>
 # </div>
 # 1234
-(Path(path[0]) / 'builder1.html').write_text(str(div), encoding='utf-8')
+
 
