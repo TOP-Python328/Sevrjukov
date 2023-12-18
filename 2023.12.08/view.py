@@ -8,12 +8,12 @@ class CLI:
 
     def output(self):
         self.mod.email = self.mail
-        if self.mod.__email:
+        if self.mod.email:
             model.FileIO.add_email(self.mod.email)
             print('Успешно')
         else:
             print('Что-то пошло не так...')
 
-    
+
 # n = CLI()
 # n.output()
