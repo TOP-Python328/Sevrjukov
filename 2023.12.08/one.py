@@ -5,7 +5,7 @@ import controller
 
 def main():
     m = model.FileIO()
-    v = view.CLI()
+    v = view.CLI
     c = controller.Application(m, v)
 
     c.loop()
